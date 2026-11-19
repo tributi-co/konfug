@@ -6,6 +6,7 @@ import json
 import functools
 
 import firebase_admin
+from firebase_admin import credentials, exceptions, firestore
 from google.cloud import datastore
 from google.cloud import secretmanager
 from google.auth.exceptions import DefaultCredentialsError
@@ -63,19 +64,19 @@ class HotFug(abc.ABC):
             try:
                 firebase_admin.get_app()
             except ValueError:
-                cred = firebase_admin.credentials.Certificate(
+                cred = credentials.Certificate(
                     cls.FIREBASE_CREDENTIAL_JSON
                 )
                 try:
                     firebase_admin.initialize_app(cred)
                 except ValueError:
                     pass
-                except firebase_admin.exceptions.FirebaseError as err:
+                except exceptions.FirebaseError as err:
                     raise HotFugError("Could not initialize firebase") from err
 
             # Caching Firebase client at class level.
             cls._FIREBASE = (
-                firebase_admin.firestore.client().collection(cls.COLLECTION)
+                firestore.client().collection(cls.COLLECTION)
             )
         return cls._FIREBASE
 
