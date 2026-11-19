@@ -1,36 +1,15 @@
-============
-Contributing
-============
+# Contribuir
 
-Contributions are welcome, and they are greatly appreciated! Every little bit
-helps, and credit will always be given.
+1. Crear una rama desde `main`.
+2. Instalar dependencias y ejecutar las pruebas:
 
-You can contribute in many ways:
+   ```bash
+   uv sync
+   uv run pytest
+   ```
 
-Types of Contributions
-----------------------
-
-Report Bugs
-~~~~~~~~~~~
-
-Fix Bugs
-~~~~~~~~
-
-Implement Features
-~~~~~~~~~~~~~~~~~~
-
-Write Documentation
-~~~~~~~~~~~~~~~~~~~
-
-Submit Feedback
-~~~~~~~~~~~~~~~
-
-Get Started!
-------------
-
-Pull Request Guidelines
------------------------
-
-Add a New Test
---------------
-
+3. Las pruebas viven en `tests/` y no deben depender de servicios externos: se
+   simulan los clientes de Google y Firebase.
+4. Al cambiar versiones de `dependencies`, validar el cambio en customer-api
+   contra staging (ver `README.md`) y subir `version` en `pyproject.toml`.
+5. Abrir un Pull Request hacia `main` describiendo qué cambia y cómo se probó.
