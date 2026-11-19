@@ -1,0 +1,10 @@
+version: 2
+updates:
+  # Los pins de install_requires son compatibles con customer-api y otros
+  # proyectos que consumen konfug. Cada subida se valida contra esos proyectos
+  # antes de fusionarse.
+  - package-ecosystem: "uv"
+    directory: "/"
+    schedule:
+      interval: "weekly"
+    open-pull-requests-limit: 5
